@@ -12,7 +12,9 @@ export default function CountriesDropdown({setCountry}){
 
     useEffect(()=>{
         async function fetchState(){
+            console.log("trying...")
             const response = await api.getCountries()
+            console.log("finished...")
             console.log(response)
              setCountries({loading: false, data:response})
         }
@@ -22,7 +24,7 @@ export default function CountriesDropdown({setCountry}){
     },[])
     
     return countries.loading?<p>Loading...</p>:(
-        <select onChange={handleChange}>
+        <select onChange={handleChange} style={{borderStyle:'unset', backgroundColor:'#b8b8b8'}}>
             {countries.data.map((country,idx)=>{
                 return <option key={idx} value={country.isoCode}>{country.name[0].text}</option>
             })}
